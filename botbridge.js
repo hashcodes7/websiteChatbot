@@ -1,38 +1,57 @@
-        <script>
-        function sendresponse() {
-            const inputElement = document.getElementById('textbox');
-            const chatElement = document.getElementById('chat');
+(function() {
+    // Create chatbot container
+    const chatbotContainer = document.createElement('div');
+    chatbotContainer.id = 'chatbot-container';
+    document.body.appendChild(chatbotContainer);
 
-            if (inputElement && chatElement) {
-                const input = inputElement.value;
-                const message = document.createElement('div');
-                message.innerHTML = `<span style="color: red;">You: </span>`+input;
-               console.log('message is ' + message.innerHTML);
-                chatElement.appendChild(message);
-                console.log(input);
-
-                // Simulate a chatbot response
-                const response = document.createElement('div');
-                const output = getResponse(input);
-                console.log(output);
-                response.innerHTML = `<span style="color: blue;">FlexPLM Helper: </span>`+output+`<hr>`;
-                chatElement.appendChild(response);
-
-                inputElement.value = '';
-            } else {
-                console.error('Element with ID "textbox" or "chat" not found');
-            }
+    // Add styles
+    const style = document.createElement('style');
+    style.innerHTML = `
+        #chatbot-container {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            width: 300px;
+            height: 400px;
+            border: 1px solid #ccc;
+            background: #fff;
+            overflow: hidden;
         }
-
-        function getResponse(input) {
-            if (input.toLowerCase() === "hi") {
-                return "Hello! How can I help you?";
-            } else if (input.toLowerCase() === "install flexplm") {
-                return "<br>1. Install Windchill DS<br>2. Install Windchill PDMLink<br>3. Install FlexPLM on Windchill<br>4. Deploy SCF Build";
-            } else if (input.toLowerCase() === "make a product") {
-                return "<br>Steps to create a new product in FlexPLM:<br>1. Log in to FlexPLM<br>2. Navigate to the 'Products' section<br>3. Click on 'Create New Product'<br>4. Fill in the required product details<br>5. Save the new product";
-            } else {
-                return "I'm not sure how to help with that.<br>";
-            }
+        #chatbot-messages {
+            height: 350px;
+            overflow-y: scroll;
+            padding: 10px;
         }
-    </script>
+        #chatbot-input {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+    `;
+    document.head.appendChild(style);
+
+    // Create chatbot UI
+    chatbotContainer.innerHTML = `
+        <div id="chatbot-messages"></div>
+        <input type="text" id="chatbot-input" placeholder="Type a message...">
+    `;
+
+    // Handle user input
+    document.getElementById('chatbot-input').addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+            const input = e.target.value;
+            const messages = document.getElementById('chatbot-messages');
+            const userMessage = document.createElement('div');
+            userMessage.textContent = 'User: ' + input;
+            messages.appendChild(userMessage);
+
+            // Simple bot response
+            const botMessage = document.createElement('div');
+            botMessage.textContent = 'Bot: ' + 'Hello! How can I help you?';
+            messages.appendChild(botMessage);
+
+            e.target.value = ''; // Clear input
+            messages.scrollTop = messages.scrollHeight; // Auto-scroll to bottom
+        }
+    });
+})();
