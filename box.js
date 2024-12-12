@@ -27,7 +27,7 @@ chatScreen.style.flex = '1';
 chatScreen.style.overflowY = 'auto'; // Enable vertical scrolling
 chatScreen.style.height = '78%'; // Make it take the maximum width
 chatScreen.style.fontSize = '11px';
-document.body.appendChild(chatScreen);
+box.appendChild(chatScreen);
 
 var footer = document.createElement('div');
 footer.style.display = 'flex';
@@ -41,9 +41,8 @@ textbox.style.overflowX = 'auto';
 textbox.style.borderRadius = '15px';
 textbox.style.fontSize = '10px';
 textbox.style.display = 'flex'; // Use flexbox
-textbox.style.height='20px';
+textbox.style.height = '20px';
 textbox.style.padding = '10px 5px 5px 5px';
-
 
 var submitbutton = document.createElement('button');
 submitbutton.type = 'button';
@@ -93,8 +92,7 @@ toggleButton.onclick = function() {
 };
 
 // Function to handle sending responses
-// Define the sendresponse function
-function sendresponse() {
+async function sendresponse() {
     console.log('sendresponse play');
     const input = textbox.value;
     const message = document.createElement('div');
@@ -104,26 +102,25 @@ function sendresponse() {
 
     // Simulate a chatbot response
     const response = document.createElement('div');
-    const output = getResponse(input);
+    const output = await getResponse(input);
     console.log(output);
     response.innerHTML = `<span style="color: blue;"><strong>FlexPLM Helper: </strong></span>` + output + `<hr>`;
     chatScreen.appendChild(response);
 
     textbox.value = '';
-	console.log('end')
+    console.log('end');
 }
 
+async function fetchData() {
+    const response = await fetch('https://hashcodes7.github.io/websiteChatbot/data.json');
+    if (!response.ok) {
+        throw new Error('Network response was not ok');
+    }
+    return response.json();
+}
 
 async function getResponse(input) {
     const inputLower = input.toLowerCase();
-
-    async function fetchData() {
-        const response = await fetch('https://hashcodes7.github.io/websiteChatbot/data.json');
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    }
 
     function searchObject(obj) {
         for (const key in obj) {
