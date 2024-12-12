@@ -1,0 +1,22 @@
+{
+    "component": {
+        "ComponentHistory.html": {
+            "title": "Accessing the Component History",
+            "information": "Welcome to the PTC FlexPLM 12.1.2.0 Help Center > Component > Accessing the Component History Accessing the Component History You can access the component history in one of two ways: \u2022 On the Component Details page, click Actions > More and then select Component History to view the Component History page. \u2022 On the Product Details page, in the Components section, select Component History from the Actions menu (row-level action) to view the Component History page. Your system administrator must first enable the Components section. For more information, see Component Property Settings . Component History Page The Component History page displays the Iteration History table, which contains the following columns: \u2022 The All column contains a checkbox that is used to compare iterations. This column only appears when there are multiple iterations of a component. \u2022 The Iteration column displays the name of the iteration. \u2022 The Iteration Status column displays whether the component iteration is currently checked in to PTC FlexPLM . \u2022 The Modified By column displays the name of the user who has modified the iteration. \u2022 The Modified On column displays the date and time that the iteration was last modified. \u2022 The Created By column displays the name of the user who has created the iteration. \u2022 The Created On column displays the date and time that the iteration was created. You can view additional details for each iteration. \u2022 Click the name of any iteration to open that iteration of the component. \u2022 Click Current Iteration to open the current iteration of the component. \u2022 To compare iterations of the component, select the checkboxes for the iterations that you want to compare. You can also select the All checkbox to select all iterations. After you have made your selections, click Compare Iterations . The component attribute values appear side by side. Attribute values that are different from those of the previous iteration are highlighted in green. This allows you to easily identify changes between iterations. Click Back to return to the Component History page. Was this helpful? This site works best with JavaScript enabled"
+        },
+        "ComponentIntro.html": {
+            "title": "Component",
+            "information": "Welcome to the PTC FlexPLM 12.1.2.0 Help Center > Component Component In PTC FlexPLM , products can be described by various types of information, such as artwork, graphics, packaging, ingredients list, testing or test result information. You can manage this information as a component. Components can have images, and attributes which can vary based on the type of component. Components can be associated to one or more products. Additionally, a product can be associated to one or more components. Components have a reference to and can be created by vendor users. Component management includes the following: \u2022 Creating a Component \u2022 Viewing a Component \u2022 Accessing the Component History \u2022 Accessing the Where Used Information \u2022 Copying a Component \u2022 Editing a Component \u2022 Deleting a Component Was this helpful? This site works best with JavaScript enabled"
+        }
+    },
+    "test": {
+        "ColorAboutColor.html": {
+            "title": "Colors",
+            "information": "Welcome to the PTC FlexPLM 12.1.2.0 Help Center > Colors Colors The PTC FlexPLM color library is used to define business standards for colors. Colors can be defined in RGB color values or via images. You can associate these colors and images to products, materials, and palettes to define the colors for the items. Was this helpful? This site works best with JavaScript enabled"
+        },
+        "Coloraddfavorites.html": {
+            "title": "Setting a Favorite Color",
+            "information": "Welcome to the PTC FlexPLM 12.1.2.0 Help Center > Colors > Setting a Favorite Color Setting a Favorite Color To simplify the process of accessing frequently used colors, you can specify favorites. To set a favorite color, do the following: 1. Click Libraries > Color . 2. On the Color page, click > Add to \u2018My Favorites\u2019 to add selected colors to the favorites. Was this helpful? This site works best with JavaScript enabled"
+        }
+    }
+}
