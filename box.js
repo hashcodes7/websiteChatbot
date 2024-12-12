@@ -116,20 +116,32 @@ function sendresponse() {
 
 async function getResponse(input) {
     const inputLower = input.toLowerCase();
-    
-    // Fetch the JSON data
-    const response = await fetch('https://hashcodes7.github.io/websiteChatbot/data.json');
-    const data = await response.json();
-    
-    // Iterate through the JSON data to find a match
-    for (const section of Object.values(data)) {
-        for (const value of Object.values(section)) {
-            if (inputLower === value.title.toLowerCase()) {
-                return value.information;
+
+    async function fetchData() {
+        const response = await fetch('https://hashcodes7.github.io/websiteChatbot/data.json');
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    }
+
+    function searchObject(obj) {
+        for (const key in obj) {
+            if (typeof obj[key] === 'object' && obj[key] !== null) {
+                const result = searchObject(obj[key]);
+                if (result) return result;
+            } else if (key === 'title' && obj[key].toLowerCase() === inputLower) {
+                return obj.information;
             }
         }
+        return null;
     }
-    
-    // Default response if no match is found
-    return "I'm not sure how to help with that.<br>";
+
+    if (inputLower === "hi") {
+        return "Hello! How can I help you?";
+    } else {
+        const data = await fetchData();
+        const result = searchObject(data);
+        return result ? result : "I'm not sure how to help with that.<br>";
+    }
 }
