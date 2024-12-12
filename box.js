@@ -113,15 +113,23 @@ function sendresponse() {
 	console.log('end')
 }
 
-// Function to get chatbot response
-function getResponse(input) {
-    if (input.toLowerCase() === "hi") {
-        return "Hello! How can I help you?";
-    } else if (input.toLowerCase() === "install flexplm") {
-        return "<br>1. Install Windchill DS<br>2. Install Windchill PDMLink<br>3. Install FlexPLM on Windchill<br>4. Deploy SCF Build";
-    } else if (input.toLowerCase() === "make a product") {
-        return "<br>Steps to create a new product in FlexPLM:<br>1. Log in to FlexPLM<br>2. Navigate to the 'Products' section<br>3. Click on 'Create New Product'<br>4. Fill in the required product details<br>5. Save the new product";
-    } else {
-        return "I'm not sure how to help with that.<br>";
+
+async function getResponse(input) {
+    const inputLower = input.toLowerCase();
+    
+    // Fetch the JSON data
+    const response = await fetch('https://hashcodes7.github.io/websiteChatbot/data.json');
+    const data = await response.json();
+    
+    // Iterate through the JSON data to find a match
+    for (const section of Object.values(data)) {
+        for (const value of Object.values(section)) {
+            if (inputLower === value.title.toLowerCase()) {
+                return value.information;
+            }
+        }
     }
+    
+    // Default response if no match is found
+    return "I'm not sure how to help with that.<br>";
 }
