@@ -1,6 +1,6 @@
 var box = document.createElement('div');
-box.style.width = '250px';
-box.style.height = '350px';
+box.style.width = '450px';
+box.style.height = '550px';
 box.style.backgroundColor = 'white';
 box.style.border = '2px solid black'; // Change border color to black
 box.style.position = 'fixed';
